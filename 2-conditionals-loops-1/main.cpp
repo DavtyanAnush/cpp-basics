@@ -3,7 +3,8 @@
 using namespace std;
 int main()
 {
-	double x1, x2, dx, a, b, c,i, F=0,x;
+	double x1, x2, dx, a, b, c, F,x;
+	const long double EXP = 0.000000000001;
 	cout << "Enter a, b, c." << endl;
 	cin >> a >> b >> c;
 	cout << "Enter x1" << endl;	
@@ -12,24 +13,73 @@ int main()
 	cin >> x2;
 	cout << "Enter dx" << endl;
 	cin >> dx;
-	x = x1;
-	while (x < x2)
+	if (dx != 0) 
 	{
-		if ((c < 0)&(b != 0)) {
-			F = a * pow(x, 2) + pow(b, 2)*x;
-		}
-		else
+	cout<<"-----------------------------------------"<<endl;
+	cout << "|";
+	cout.width(10);
+	cout <<"x";
+	cout.width(10);
+	cout << "|";
+	cout.width(10);
+	cout << "F";
+	cout.width(10);
+	cout << "|"<<endl;
+	cout << "-----------------------------------------" << endl;
+	x = x1;
+		while (x <=x2)
 		{
-			if ((c > 0)&(b == 0))
-		    {
-			F = (x + a) / (x + c);
-		    }
+			if ((c < 0)&(abs(b)>EXP)){
+				F = a * pow(x, 2) + pow(b, 2)*x;
+			}
 			else
-			F=x/c;
+			{
+				if ((c > 0)&(abs(b)<EXP))
+				{
+					if (x + c != 0)
+						F = (x + a) / (x + c);
+					else
+						cout << "Oshibka!";
+				}
+				else
+					if (c != 0)
+						F = x / c;
+					else
+						cout << "Oshibka!";
+			}
+			if (((int(a)&int(b)) | (int(a)&int(c))) != 0) 
+			{
+				cout << "|";
+				cout.width(10);
+				cout << fixed;
+				cout.precision(3);
+				cout << showpos << x;
+				cout.width(10);
+				cout << "|";
+				cout.width(10);
+				cout << F;
+				cout.width(10);
+				cout << "|" << endl;
+			}
+			else 
+			{
+				cout << "|";
+				cout.width(10);
+				cout << fixed;
+				cout.precision(3);
+				cout << showpos << x;
+				cout.width(10);
+				cout << "|";
+				cout.width(10);
+				cout << int(F);
+				cout.width(10);
+				cout << "|" << endl;
+			}
+			x += dx;
 		}
-		
-		cout << F << '|';
-		x = x + dx;
+		cout << "-----------------------------------------" << endl;
 	}
+	else
+		cout << "Oshibka!";
 	return 0;
 }
