@@ -14,7 +14,7 @@ int main()
 	cin >> x2;
 	cout << "Enter dx" << endl;
 	cin >> dx;
-	if (abs(dx) >EPS)
+	if ((abs(dx) >EPS)&(abs(c) > EPS))
 	{
 		cout << string(41, '-') << endl;
 		cout << "|";
@@ -27,6 +27,8 @@ int main()
 		cout.width(10);
 		cout << "|" << endl;
 		cout << string(41, '-') << endl;
+		cout << fixed;
+		cout.precision(3);
 		x = x1;
 		while (x <= x2)
 		{
@@ -43,15 +45,10 @@ int main()
 						cout << "Oshibka deleniya na '0'!";
 				}
 				else
-					if (abs(c) >EPS)
 						F = x / c;
-					else
-						cout << "Oshibka deleniya na '0'!";
 			} 
 			cout << "|";
 			cout.width(10);
-            cout << fixed;
-			cout.precision(3);
 			cout << x;
 			cout.width(10);
 			cout << "|";
