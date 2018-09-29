@@ -41,8 +41,18 @@ int main()
 				{
 					if (abs(x + c) >EPS)
 						F = (x + a) / (x + c);
-					else
-						cout << "Oshibka deleniya na '0'!";
+					else {
+						cout << "|";
+						cout.width(10);
+						cout << x;
+						cout.width(10);
+						cout << "|";
+						cout.width(10);
+						cout << "division by zero";
+						cout.width(4);
+						cout << "|" << endl;
+						break;
+					}
 				}
 				else
 						F = x / c;
