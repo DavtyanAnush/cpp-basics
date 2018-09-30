@@ -51,7 +51,6 @@ int main()
 						cout << "division by zero";
 						cout.width(4);
 						cout << "|" << endl;
-						break;
 					}
 				}
 				else
