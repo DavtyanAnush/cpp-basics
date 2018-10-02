@@ -35,7 +35,7 @@ int main()
 	{
 		cout << "|" << setw(11) << x << setw(7) << "|";
 		cout << setw(11) << log(1 - x) << setw(7) << "|";
-		y = 1;
+		y = x;
 		int i = 1;
 		sum = -1*x;
 
