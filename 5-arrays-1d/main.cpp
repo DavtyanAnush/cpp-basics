@@ -24,7 +24,7 @@ int main()
 	for (i = 1; i < n; i++)
 		if (min > array[i])
 			min = array[i];
-	cout << "\n min=" << min << endl;
+	cout << "min=" << min << endl;
 
 	for (i = 0;i<=n; i++)
 		if (array[i] > 0)
@@ -32,23 +32,23 @@ int main()
 			k1 = i;
 			break;
 		}
-	for (i = n;i>=0; i--)
+	for (i = n-1;i>=0; i--)
 		if (array[i] > 0)
 		{
 			k2 = i;
 			break;
 		}
 
-	if (((k1 > -1)&(k2 > -1)) && (k1 != k2 - 1)&&(k1=k2)) 
+	if (((k1 > -1)&&(k2 > -1)) && (k1 != k2 - 1)&&(k1!=k2)) 
 	{
 		for (i = k1 + 1; i < k2; i++) {
 			s += array[i];
 		}
-		cout << "\n Summa=" << s;
+		cout << "Summa=" << s << endl;
 	}
-	else cout << "No amount elements ";
+	else cout << "No amount elements "<<endl;
 
-	cout << "\n New array: ";
+	cout << "New array: ";
 	for (i = 0; i < n; i++)
 		if (array[i] == 0)
 			cout << array[i] << " ";
