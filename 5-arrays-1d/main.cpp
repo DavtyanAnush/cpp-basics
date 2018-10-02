@@ -4,13 +4,19 @@ using namespace std;
 
 int main()
 {
-	int i, n, k1, k2;
+	int i, n, k1=-1, k2=-1;
 	float min, s = 0;
-	cout << "Write the number of array elements, n=";
+	check:
+	cout << "Write the number of array elements (n>0), n=";
 	cin >> n;
+	if (n <= 0) {
+		cout << "Input error" << endl;
+		goto check;
+	}
+
 	float *array = new float[n];
 
-	cout << "  Enter elements: ";
+	cout << "Enter elements: ";
 	for (i = 0; i < n; i++)
 		cin >> array[i];
 
@@ -18,26 +24,31 @@ int main()
 	for (i = 1; i < n; i++)
 		if (min > array[i])
 			min = array[i];
+	cout << "\n min=" << min << endl;
 
-	for (i = 0;; i++)
+	for (i = 0;i<=n; i++)
 		if (array[i] > 0)
 		{
 			k1 = i;
 			break;
 		}
-	for (i = n;; i--)
+	for (i = n;i>=0; i--)
 		if (array[i] > 0)
 		{
 			k2 = i;
 			break;
 		}
-	for (i = k1 + 1; i < k2; i++)
-		s += array[i];
 
-	cout << "\n  min=" << min;
-	cout << "\n  Summa=" << s;
+	if (((k1 > -1)&(k2 > -1)) && (k1 != k2 - 1)&&(k1=k2)) 
+	{
+		for (i = k1 + 1; i < k2; i++) {
+			s += array[i];
+		}
+		cout << "\n Summa=" << s;
+	}
+	else cout << "No amount elements ";
 
-	cout << "\n  New array: ";
+	cout << "\n New array: ";
 	for (i = 0; i < n; i++)
 		if (array[i] == 0)
 			cout << array[i] << " ";
