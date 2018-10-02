@@ -48,10 +48,10 @@ int main()
 			sum = sum + y;
 			n++;
 		}
-		if (n > i_max) 
+		if (i > i_max) 
 		 break;
 	  }
-	   if (n > i_max) 
+	   if (i > i_max) 
 	   {
 		  cout << setw(11) << "Excess limit" << setw(6) << "|";
 		  cout << setw(11) << " " << setw(7) << "|" << endl;
