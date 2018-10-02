@@ -7,14 +7,14 @@ using namespace std;
 
 int main()
 {
-	double x, x1, x2, dx, y, eps;
+	double x, x1, x2, dx, y, sum, eps;
 	const double kEPS = 1e-15;
 	const int i_max=100;
 
 	check:
 	cout << "ln(1-x), -1 <= x < 1"<<endl<< "Enter x1, x2, dx, eps" << endl;
 	cin >> x1 >> x2 >> dx >> eps;
-	if (((abs(dx) < kEPS)||((x1 >= 1)||(x1 < -1))||((x2 >= 1)||(x2 < -1))))
+	if (((fabs(dx) < kEPS)||((x1 >= 1)||(x1 < -1))||((x2 >= 1)||(x2 < -1))))
 	{
 		cout << "Input error" << endl;
 		goto check;
@@ -30,29 +30,37 @@ int main()
 	cout.precision(6);
 
 	x = x1;
-	
+	int n = 1;
 	while (x<=x2)
 	{
 		cout << "|" << setw(11) << x << setw(7) << "|";
 		cout << setw(11) << log(1 - x) << setw(7) << "|";
 		
-		int i = 0;
-		y = 0;
+		int i = 1;
+		sum = -1*x;
 
-      while (abs(y) <= eps)
+      while (fabs(sum)>= eps)
 	  {
 		i++;
-		y +=(pow(x, i) / i);
-		
-		if (i > i_max) 
-		break;
-		
+		if (i % 2 == 0) 
+		{
+			y =-1*(pow(x, i) / i);
+			sum = sum + y;
+			n++;
+		}
+		if (n > i_max) 
+		 break;
 	  }
-	   if (i > i_max)
+	   if (n > i_max) 
+	   {
 		  cout << setw(11) << "Excess limit" << setw(6) << "|";
+		  cout << setw(11) << " " << setw(7) << "|" << endl;
+	   }
 	   else 
-		  cout << setw(11) << -1 * y << setw(7) << "|";
-	   cout << setw(11) << i << setw(7) << "|" << endl;
+	   {
+		   cout << setw(11) << sum << setw(7) << "|";
+		   cout << setw(11) << n << setw(7) << "|" << endl;
+	   }
 	   x += dx;
 	}
 	cout << string(73, '-') << endl;
