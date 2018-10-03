@@ -30,24 +30,22 @@ int main()
 	cout.precision(6);
 
 	x = x1;
-	int n = 1;
+	
 	while (x<=x2)
 	{
 		cout << "|" << setw(11) << x << setw(7) << "|";
 		cout << setw(11) << log(1 - x) << setw(7) << "|";
+
 		y = x;
 		int i = 1;
 		sum = -1*x;
 
-      while (fabs(y)>= eps)
+      while (fabs(y)> eps)
 	  {
 		i++;
-		if (i % 2 == 0) 
-		{
-			y =-1*(pow(x, i) / i);
-			sum = sum + y;
-			n++;
-		}
+		y =-1*(pow(x, i) / i);
+		sum = sum + y;
+		
 		if (i > i_max) 
 		 break;
 	  }
@@ -59,7 +57,7 @@ int main()
 	   else 
 	   {
 		   cout << setw(11) << sum << setw(7) << "|";
-		   cout << setw(11) << n << setw(7) << "|" << endl;
+		   cout << setw(11) << i << setw(7) << "|" << endl;
 	   }
 	   x += dx;
 	}
