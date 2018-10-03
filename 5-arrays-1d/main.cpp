@@ -4,7 +4,7 @@ using namespace std;
 
 int main()
 {
-	int i, n, k1=-1, k2=-1;
+	int i, n, j, k1=-1, k2=-1;
 	float min, s = 0;
 	check:
 	cout << "Write the number of array elements (n>0), n=";
@@ -24,7 +24,7 @@ int main()
 	for (i = 1; i < n; i++)
 		if (min > array[i])
 			min = array[i];
-	cout << "min=" << min << endl;
+	cout << "Min=" << min << endl;
 
 	for (i = 0;i<=n; i++)
 		if (array[i] > 0)
@@ -39,22 +39,26 @@ int main()
 			break;
 		}
 
-	if (((k1 > -1)&&(k2 > -1)) && (k1 != k2 - 1)&&(k1!=k2)) 
+	if ((k1 > -1)&&(k1 < k2)) 
 	{
 		for (i = k1 + 1; i < k2; i++) {
 			s += array[i];
 		}
-		cout << "Summa=" << s << endl;
+		cout << "Sum=" << s << endl;
 	}
-	else cout << "No amount elements "<<endl;
+	else cout << "No two positive elements were found"<<endl;
+
+	for (i = n - 1; i >= 0; i--)
+		if (array[i] == 0)
+		{
+			for (j = i; j >= 0; j--)
+				array[j] = array[j - 1];
+			array[0] = 0;
+		}
 
 	cout << "New array: ";
 	for (i = 0; i < n; i++)
-		if (array[i] == 0)
-			cout << array[i] << " ";
-	for (i = 0; i < n; i++)
-		if (array[i])
-			cout << array[i] << " ";
+		cout << array[i] << " ";
 
 	delete[] array;
   return 0;
