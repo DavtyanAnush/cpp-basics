@@ -15,10 +15,10 @@ void printTableHead()
 	cout << string(73, '-') << endl;
 }
 
-double computeLnSeries(double eps, double ln, int &n, double x,  const int max_iter) 
+double computeLnSeries(double eps, int &n, double x,  const int max_iter) 
 {
 	double nth_term = 1;
-	ln = 0;
+	double ln = 0;
 	for (n = 1; n < max_iter; n++)
 	{
 		nth_term = -pow(x, n) / n;
@@ -48,7 +48,7 @@ void printResult(int n, const int max_iter, double ln, double x)
 
 int main()
 {
-	double x, x1, x2, dx, ln=0, eps;
+	double x, x1, x2, dx, ln, eps;
 	const double kEPS = 1e-15;
 	int n;
 	const int max_iter = 1000000;
@@ -70,7 +70,7 @@ check:
 	x = x1;
 	while (x <= x2)
 	{
-		ln = computeLnSeries(eps, ln, n, x, max_iter);
+		ln = computeLnSeries(eps, n, x, max_iter);
 		printResult(n, max_iter, ln, x);
 		x += dx;
 	}
