@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void printTable() 
+void printTableHead() 
 {
 	cout << string(73, '-') << endl;
 	cout << "|" << setw(9) << "x" << setw(9);
@@ -15,7 +15,7 @@ void printTable()
 	cout << string(73, '-') << endl;
 }
 
-void lnSeries(double eps, double &ln, int &n, double &x,  int max_iter) 
+double computeLnSeries(double eps, double &ln, int &n, double &x,  int max_iter) 
 {
 	double nth_term = 1;
 	ln = 0;
@@ -27,10 +27,11 @@ void lnSeries(double eps, double &ln, int &n, double &x,  int max_iter)
 		if (abs(nth_term) < eps)
 			break;
 	}
+	return ln;
 }
 
 
-void printResultat(int n, int max_iter, double ln, double x) 
+void printResult(int n, const int max_iter, double ln, double x) 
 {
 	cout << "|" << setw(11) << x << setw(7) << "|";
 	cout << setw(11) << log(1 - x) << setw(7) << "|";
@@ -49,7 +50,8 @@ int main()
 {
 	double x, x1, x2, dx, ln, eps;
 	const double kEPS = 1e-15;
-	int n, max_iter = 1000000;
+	int n;
+	const int max_iter = 1000000;
 
 check:
 	cout << "ln(1-x), -1 <= x < 1" << endl << "Enter x1, x2, dx, eps" << endl;
@@ -60,7 +62,7 @@ check:
 		goto check;
 	}
 
-	printTable();
+	printTableHead();
 
 	cout << fixed;
 	cout.precision(6);
@@ -68,10 +70,9 @@ check:
 	x = x1;
 	while (x <= x2)
 	{
-		ln = 0;
 		n = 1;
-		lnSeries(eps, ln, n, x, max_iter);
-		printResultat(n, max_iter, ln, x);
+		ln = computeLnSeries(eps, ln, n, x, max_iter);
+		printResult(n, max_iter, ln, x);
 		x += dx;
 	}
 	cout << string(73, '-') << endl;
