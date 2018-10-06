@@ -15,11 +15,11 @@ void printTableHead()
 	cout << string(73, '-') << endl;
 }
 
-double computeLnSeries(double eps, int &n, double x,  const int max_iter) 
+double computeLnSeries(double eps, int &n, double x,  const int kMaxIter) 
 {
-	double nth_term = 1;
+	double nth_term;
 	double ln = 0;
-	for (n = 1; n < max_iter; n++)
+	for (n = 1; n < kMaxIter; n++)
 	{
 		nth_term = -pow(x, n) / n;
 		ln += nth_term;
@@ -31,11 +31,11 @@ double computeLnSeries(double eps, int &n, double x,  const int max_iter)
 }
 
 
-void printResult(int n, const int max_iter, double ln, double x) 
+void printResult(int n, const int kMaxIter, double ln, double x) 
 {
 	cout << "|" << setw(11) << x << setw(7) << "|";
 	cout << setw(11) << log(1 - x) << setw(7) << "|";
-	if (n == max_iter) {
+	if (n == kMaxIter) {
 		cout << setw(11) << "Excess limit" << setw(6) << "|";
 		cout << setw(11) << " " << setw(7) << "|" << endl;
 	}
@@ -49,14 +49,14 @@ void printResult(int n, const int max_iter, double ln, double x)
 int main()
 {
 	double x, x1, x2, dx, ln, eps;
-	const double kEPS = 1e-15;
+	const double kEps = 1e-15;
 	int n;
-	const int max_iter = 1000000;
+	const int kMaxIter = 1000000;
 
 check:
 	cout << "ln(1-x), -1 <= x < 1" << endl << "Enter x1, x2, dx, eps" << endl;
 	cin >> x1 >> x2 >> dx >> eps;
-	if ((dx < kEPS) || (eps < kEPS) || (x1 < -1) || (x1 >= x2) || (x2 >= 1))
+	if ((dx < kEps) || (eps < kEps) || (x1 < -1) || (x1 >= x2) || (x2 >= 1))
 	{
 		cout << "Input error" << endl;
 		goto check;
@@ -70,8 +70,8 @@ check:
 	x = x1;
 	while (x <= x2)
 	{
-		ln = computeLnSeries(eps, n, x, max_iter);
-		printResult(n, max_iter, ln, x);
+		ln = computeLnSeries(eps, n, x, kMaxIter);
+		printResult(n, kMaxIter, ln, x);
 		x += dx;
 	}
 	cout << string(73, '-') << endl;
