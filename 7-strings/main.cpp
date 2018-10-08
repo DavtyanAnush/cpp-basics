@@ -11,7 +11,7 @@ int main()
 	ifstream fin("text.txt");
 
 	if (!fin.is_open()) {
-		cout << "Файл не может быть открыт!\n";
+		cout << "Can't open file!\n";
 		return 1;
 	}
   stop:
