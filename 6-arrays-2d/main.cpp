@@ -2,11 +2,9 @@
 #include <fstream>
 #include <iomanip>
 
-
 using namespace std;
 
-void findSeddlePoint(int i, int j,
-	int min, int  max, int array[4][4], 
+void findSeddlePoint(int i,	int min, int array[4][4], 
 	int const kRow, int const kCol);
 
 int main()
@@ -16,25 +14,19 @@ int main()
 
 	int array[kRow][kCol];
 	ifstream fin("array.txt");
-	if (!fin.is_open()) 
+	if (!fin.is_open())
 	{
 		cout << "can't open file" << endl;
 		return 1;
 	}
-	for (int i = 0; i < kRow; i++) 
-		for (int j = 0; j < kCol; j++) 
+	for (int i = 0; i < kRow; i++){
+		for (int j = 0; j < kCol; j++)
 		{
 			fin >> array[i][j];
-		}
-
-	
-	for (i = 0; i < kRow; i++) {
-		for (j = 0; j < kCol; j++)
-		{
 			cout << setw(3) << array[i][j] << setw(2) << "|";
-		} 
-		cout << endl;
-	}
+		}
+	cout << endl;
+    }
 
 	for (i = 0; i < kRow; i++) {
 		for (j = 0; j < kCol; j++)
@@ -47,58 +39,52 @@ int main()
 				break;
 			}
 	}
-
 	
-	for (j = 0; j < kCol; j++) {
-		for (i = 0; i < kRow; i++)
-		{
-			min = array[i][j];
-			max = min;
-			findSeddlePoint(i, j, min, max, array, kRow, kCol);
-		} cout << endl;
-		break;
+	for (i = 0; i < kRow; i++)
+	{
+		min = array[i][0];
+	    findSeddlePoint(i, min, array, kRow, kCol);
 	}
 
 	return 0;
 }
 
-void findSeddlePoint(int i, int j, int min, int  max, 
+void findSeddlePoint(int i, int min,
 	int array[4][4], int const kRow, int const kCol) {
-	int i_1 = i;
-	int j_1 = j;
-	int i_2 = i;
-	for (j = 0; j < kCol; j++)
+	int i_row_min = i;
+	int j_col_min = 0;
+	int i_row_max = i;
+
+	for (int j = 0; j < kCol; j++)
 	{
 		if (array[i][j] < min)
 		{
 			min = array[i][j];
-			i_1 = i;
-			j_1 = j;
+			i_row_min = i;
+			j_col_min = j;
 		}
 	}
-check:
-	max = min;
+ check:
+	int max = min;
 	for (i = 0; i < kRow; i++)
-		if (array[i][j_1] > max)
+		if (array[i][j_col_min] > max)
 		{
-			max = array[i][j_1];
-			i_2 = i;
+			max = array[i][j_col_min];
+			i_row_max = i;
 		}
-	if (i_1 == i_2)
+
+	if (i_row_min == i_row_max)
 		cout << "Seddle point: " << max 
-		<< "[" << i_1 << "]" 
-		<< "[" << j_1 << "]" << endl;
+		<< "[" << i_row_min << "]" 
+		<< "[" << j_col_min << "]" << endl;
 
-	i = i_1;
-	for (j = j_1 + 1; j < kCol; j++)
+	for (int j = j_col_min + 1; j < kCol; j++)
 	{
-
-		if (array[i][j] == min)
+		if (array[i_row_min][j] == min)
 		{
-			min = array[i][j];
-			i_1 = i;
-			i_2 = i;
-			j_1 = j;
+			min = array[i_row_min][j];
+			i_row_max = i_row_min;
+			j_col_min = j;
 
 			goto check;
 		}
