@@ -14,6 +14,7 @@ int main()
 		cout << "Can't open file!\n";
 		return 1;
 	}
+
   stop:
 	while (getline(fin, text, '.')) {
 		for (int i = 1; i < text.size(); i++) {
