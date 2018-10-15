@@ -22,7 +22,7 @@ int main()
 				goto stop;
 			}
 		}
-		cout << text << ".\n";
+		cout << text << ".";
 	}
 
 	return 0;
