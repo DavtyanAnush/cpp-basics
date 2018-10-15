@@ -6,7 +6,7 @@ using namespace std;
 
 int main()
 {
-	setlocale(LC_ALL, "rus");
+	
 	string text, p;
 	ifstream fin("text.txt");
 
@@ -16,7 +16,7 @@ int main()
 	}
 
   stop:
-	while (getline(fin, text, '.')) {
+	while (getline(fin, text, '.')||getline(fin, text, '!')||getline(fin, text, '?')) {
 		for (int i = 1; i < text.size(); i++) {
 			if (text[i] == ',') {
 				goto stop;
