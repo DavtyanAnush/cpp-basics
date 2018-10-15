@@ -17,7 +17,7 @@ int main()
 
   stop:
 	while (getline(fin, text, '.')||getline(fin, text, '!')||getline(fin, text, '?')) {
-		for (int i = 1; i < text.size(); i++) {
+		for (int i = 1; i < text.length(); i++) {
 			if (text[i] == ',') {
 				goto stop;
 			}

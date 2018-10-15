@@ -1,9 +1,6 @@
 #include "func.h"
-#include <iostream>
 
-using namespace std;
-
-int CreationArray()
+int CreateArray()
 {
 	int n;
 check:
@@ -22,15 +19,17 @@ void EnterEelements(float array[], int n)
 	for (int i = 0; i < n; i++)
 		cin >> array[i];
 }
-void FaindMinimum(float array[], int n)
+
+float FindMinimum(float array[], int n)
 {
-	int min = array[0];
+	float min = array[0];
 	for (int i = 1; i < n; i++)
 		if (min > array[i])
 			min = array[i];
-	cout << "Min=" << min << endl;
+	return min;
 }
-void SumElements(float array[], int n)
+
+float SumElements(float array[], int n)
 {
 	int k1 = -1,
 		k2 = -1;
@@ -52,10 +51,10 @@ void SumElements(float array[], int n)
 	{
 		for (int i = k1 + 1; i < k2; i++) {
 			s += array[i];
-		}
-		cout << "Sum=" << s << endl;
+		}	
 	}
-	else cout << "No two positive elements were found" << endl;
+	
+	return s;
 }
 
 void SortArray(float array[], int n)
@@ -68,9 +67,10 @@ void SortArray(float array[], int n)
 			array[0] = 0;
 		}
 }
-void PrintNewArray(float array[], int n)
+
+void PrintArray(float array[], int n)
 {
-	cout << "New array: ";
+	
 	for (int i = 0; i < n; i++)
 		cout << array[i] << " ";
 }
