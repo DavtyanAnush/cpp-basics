@@ -1,29 +1,35 @@
-#include <iostream>
-#include <fstream>
+#include <iostream> 
 #include <string>
+#include <cstring>
+#include <fstream>
+#include <cmath>
 
 using namespace std;
 
-int main()
-{
-	
-	string text, p;
-	ifstream fin("text.txt");
+int main() {
 
-	if (!fin.is_open()) {
-		cout << "Can't open file!\n";
+	ifstream fin("text.txt");
+	if (!fin.is_open()) 
+	{
+		cout << "Can't open file: text.txt!\n";
 		return 1;
 	}
 
-  stop:
-	while (getline(fin, text, '.')||getline(fin, text, '!')||getline(fin, text, '?')) {
-		for (int i = 1; i < text.length(); i++) {
-			if (text[i] == ',') {
-				goto stop;
-			}
+	string text;
+	char buf;
+	while (!fin.eof()) 
+	{
+		fin.get(buf);
+		text += buf;
+		if ((buf == '?') || (buf == '.') || (buf == '!')) 
+		{
+			if (text.find(",") == -1)
+				cout << text << endl;
+			text = " ";
+			buf = ' ';
 		}
-		cout << text << ".";
 	}
 
+	fin.close();
 	return 0;
 }

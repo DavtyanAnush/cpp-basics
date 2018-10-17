@@ -12,7 +12,7 @@ struct workers
 
 int main()
 {
-	const int kWorkers = 10;
+	const int kWorkers = 3;
 	workers workers[kWorkers];
 
 	for (int i=0; i < kWorkers; i++)
@@ -43,15 +43,17 @@ int main()
 	{
 		cout << workers[i].name<< " - " <<  workers[i].status << " - " << workers[i].year << "\n";
 	}
-
-	int stazh;
+	cout << endl;
+	int stazh, current_year;
+	cout << "Enter the current year: ";
+	cin >> current_year;
 	cout << "Enter the work experience (e.g., 5): ";
 	cin >> stazh;
 	cout << "Works more than " << stazh << " years: " << endl;
 	int r = 0;
 	for (int i = 0; i < kWorkers; i++)
 	{
-		if ((2018 - workers[i].year) > stazh) 
+		if ((current_year - workers[i].year) > stazh)
 		{
 		cout << workers[i].name << endl;
 		r += 1;
