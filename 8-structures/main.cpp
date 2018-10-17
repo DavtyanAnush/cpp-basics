@@ -4,7 +4,7 @@
 
 using namespace std;
 
-struct workers
+struct Worker
 {
 	string name, status;
 	int year;
@@ -13,7 +13,7 @@ struct workers
 int main()
 {
 	const int kWorkers = 3;
-	workers workers[kWorkers];
+	Worker workers[kWorkers];
 
 	for (int i=0; i < kWorkers; i++)
 	{
@@ -45,7 +45,7 @@ int main()
 	}
 	cout << endl;
 	int stazh, current_year;
-	cout << "Enter the current year: ";
+	cout << "Enter the current year (e.g., 2018): ";
 	cin >> current_year;
 	cout << "Enter the work experience (e.g., 5): ";
 	cin >> stazh;
