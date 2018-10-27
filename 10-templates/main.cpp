@@ -45,7 +45,7 @@ void printArr(Type array)
 template <class Type>
 void findSum(Type array) 
 {
-	int sum = 0;
+	Type sum;
 	for (int k = 0; k < Row; k++)
 	{
 		for (int j = 0; j < Col; j++)
@@ -53,7 +53,7 @@ void findSum(Type array)
 			{	
 				sum = 0;
 				for (j = 0; j < Col; j++)
-					sum += array[k][j];
+					sum = array[k][j];
 				cout << "Sum=" << sum << endl;
 				break;
 			}
@@ -108,22 +108,6 @@ void FaindSaddlePoint(Type array)
 	
 }
 
-template <class TypeAr>
-void start(string name) 
-{
-	TypeAr array[Row][Col];
-
-	//reading and print array
-	readArr(array, name);
-	printArr(array);
-
-	//find sum array
-	findSum(array);
-
-	//find Saddle Point
-	FaindSaddlePoint(array);
-}
-
 int main() 
 {
 error:
@@ -132,15 +116,45 @@ error:
 	cin >> select;
 	if (select == "0") 
 	{
-		start<int>("int");
+		int array[Row][Col];
+
+		//reading and print array
+		readArr(array, select);
+		printArr(array);
+
+		//find sum array
+		findSum(array);
+
+		//find Saddle Point
+		FaindSaddlePoint(array);
 	}
 	else if (select == "1") 
 	{
-		start<double>("double");
+		double array[Row][Col];
+
+		//reading and print array
+		readArr(array, select);
+		printArr(array);
+
+		//find sum array
+		findSum(array);
+
+		//find Saddle Point
+		FaindSaddlePoint(array); 
 	}
 	else if (select == "2") 
 	{
-		start<float>("float");
+		float array[Row][Col];
+
+		//reading and print array
+		readArr(array, select);
+		printArr(array);
+
+		//find sum array
+		findSum(array);
+
+		//find Saddle Point
+		FaindSaddlePoint(array);
 	}
 	else 
 	{
